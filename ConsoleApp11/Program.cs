@@ -13,7 +13,7 @@ namespace ConsoleApp11
             Console.WriteLine("=== MENU ===");
             Console.WriteLine("1. Kalkulator");
             Console.WriteLine("2. Konwerter temperatur");
-            Console.WriteLine("3. Średnia ocen ucznia");
+            Console.WriteLine("3. Srednia ocen ucznia");
             Console.Write("Wybierz zadanie (1-3): ");
             int taskChoice = int.Parse(Console.ReadLine());
 
@@ -53,49 +53,49 @@ namespace ConsoleApp11
                     Console.Write("Wybierz kierunek konwersji (C lub F): ");
                     char choice = char.ToUpper(Console.ReadKey().KeyChar);
                     Console.WriteLine();
-                    Console.Write("Podaj temperaturę: ");
+                    Console.Write("Podaj temperature: ");
                     double temp = double.Parse(Console.ReadLine());
 
                     if (choice == 'C')
                     {
                         double fahrenheit = temp * 1.8 + 32;
-                        Console.WriteLine($"{temp}°C = {fahrenheit}°F");
+                        Console.WriteLine($"{temp}C = {fahrenheit}F");
                     }
                     else if (choice == 'F')
                     {
                         double celsius = (temp - 32) / 1.8;
-                        Console.WriteLine($"{temp}°F = {celsius}°C");
+                        Console.WriteLine($"{temp}F = {celsius}C");
                     }
                     else
                     {
-                        Console.WriteLine("Nieprawidłowy wybór.");
+                        Console.WriteLine("Nieprawidlowy wybor.");
                     }
                     break;
 
                 case 3:
-                    // Zadanie 3: Średnia ocen ucznia
-                    Console.Write("Podaj liczbę ocen: ");
+                    // Zadanie 3: Srednia ocen ucznia
+                    Console.Write("Podaj liczbe ocen: ");
                     int count = int.Parse(Console.ReadLine());
                     double sum = 0;
 
                     for (int i = 1; i <= count; i++)
                     {
-                        Console.Write($"Podaj ocenę {i}: ");
+                        Console.Write($"Podaj ocene {i}: ");
                         double grade = double.Parse(Console.ReadLine());
                         sum += grade;
                     }
 
                     double average = sum / count;
-                    Console.WriteLine($"Średnia: {average:F2}");
+                    Console.WriteLine($"Srednia: {average:F2}");
 
                     if (average >= 3.0)
-                        Console.WriteLine("Uczeń zdał.");
+                        Console.WriteLine("Uczen zdal.");
                     else
-                        Console.WriteLine("Uczeń nie zdał.");
+                        Console.WriteLine("Uczen nie zdal.");
                     break;
 
                 default:
-                    Console.WriteLine("Nieprawidłowy wybór zadania.");
+                    Console.WriteLine("Nieprawidlowy wybor zadania.");
                     break;
             }
         }
