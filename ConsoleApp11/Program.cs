@@ -10,63 +10,93 @@ namespace ConsoleApp11
     {
         static void Main(string[] args)
         {
-            ////Opis: Napisz program, który prosi użytkownika o dwie liczby oraz o wybór operacji arytmetycznej (+, -, * lub /). Następnie, w zależności od wybranego działania, program oblicza wynik i wyświetla go na ekranie. Użyj instrukcji warunkowej (if/elif) do rozpoznania operacji.
-            //Przykład:
-            //Wejście: 10, 20, +
-            //Wyjście: Wynik: 30
+            Console.WriteLine("=== MENU ===");
+            Console.WriteLine("1. Kalkulator");
+            Console.WriteLine("2. Konwerter temperatur");
+            Console.WriteLine("3. Średnia ocen ucznia");
+            Console.Write("Wybierz zadanie (1-3): ");
+            int taskChoice = int.Parse(Console.ReadLine());
 
-            //Z uwagi na to że wskazane liczby w przykładzie nie posiadaja przecinka dalem same inty
-            // Zad 1.
-            int first_number, second_number, result=-1;
-            char mathematical_sign;
-            char[] tab = { '+', '-', '/', '*' };
-
-            Console.WriteLine("Witaj w zadaniu 1");
-            Console.WriteLine("Podaj pierwsza liczbe");
-            first_number = int.Parse((Console.ReadLine()));
-            Console.WriteLine("Podaj druga liczbe");
-            second_number = int.Parse((Console.ReadLine()));
-            Console.WriteLine("Podaj operator (+, -, /, *)");
-            mathematical_sign = char.Parse((Console.ReadLine()));
-            
-
-            foreach (char sign in tab)
+            switch (taskChoice)
             {
-                if (mathematical_sign == sign)
-                {
-                    switch (sign)
+                case 1:
+                    // Zadanie 1: Kalkulator
+                    int first_number, second_number, result = -1;
+                    char mathematical_sign;
+                    char[] tab = { '+', '-', '/', '*' };
+
+                    Console.WriteLine("Podaj pierwsza liczbe");
+                    first_number = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj druga liczbe");
+                    second_number = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj operator (+, -, /, *)");
+                    mathematical_sign = char.Parse(Console.ReadLine());
+
+                    foreach (char sign in tab)
                     {
-                        case '+': result = first_number + second_number; break;
-                        case '-': result = first_number - second_number; break;
-                        case '*': result = first_number * second_number; break;
-                        case '/': result = first_number / second_number; break;
+                        if (mathematical_sign == sign)
+                        {
+                            switch (sign)
+                            {
+                                case '+': result = first_number + second_number; break;
+                                case '-': result = first_number - second_number; break;
+                                case '*': result = first_number * second_number; break;
+                                case '/': result = first_number / second_number; break;
+                            }
+                        }
                     }
-                }
-            }
-            Console.WriteLine("Wynik to: " + result.ToString());
+                    Console.WriteLine("Wynik to: " + result.ToString());
+                    break;
 
-            // Zadanie 2: Konwerter temperatur
+                case 2:
+                    // Zadanie 2: Konwerter temperatur
+                    Console.Write("Wybierz kierunek konwersji (C lub F): ");
+                    char choice = char.ToUpper(Console.ReadKey().KeyChar);
+                    Console.WriteLine();
+                    Console.Write("Podaj temperaturę: ");
+                    double temp = double.Parse(Console.ReadLine());
 
-            Console.Write("Wybierz kierunek konwersji (C lub F): ");
-            char choice = char.ToUpper(Console.ReadKey().KeyChar);
-            Console.WriteLine();
+                    if (choice == 'C')
+                    {
+                        double fahrenheit = temp * 1.8 + 32;
+                        Console.WriteLine($"{temp}°C = {fahrenheit}°F");
+                    }
+                    else if (choice == 'F')
+                    {
+                        double celsius = (temp - 32) / 1.8;
+                        Console.WriteLine($"{temp}°F = {celsius}°C");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Nieprawidłowy wybór.");
+                    }
+                    break;
 
-            Console.Write("Podaj temperaturę: ");
-            double temp = double.Parse(Console.ReadLine());
+                case 3:
+                    // Zadanie 3: Średnia ocen ucznia
+                    Console.Write("Podaj liczbę ocen: ");
+                    int count = int.Parse(Console.ReadLine());
+                    double sum = 0;
 
-            if (choice == 'C')
-            {
-                double fahrenheit = temp * 1.8 + 32;
-                Console.WriteLine($"{temp}°C = {fahrenheit}°F");
-            }
-            else if (choice == 'F')
-            {
-                double celsius = (temp - 32) / 1.8;
-                Console.WriteLine($"{temp}°F = {celsius}°C");
-            }
-            else
-            {
-                Console.WriteLine("Nieprawidłowy wybór.");
+                    for (int i = 1; i <= count; i++)
+                    {
+                        Console.Write($"Podaj ocenę {i}: ");
+                        double grade = double.Parse(Console.ReadLine());
+                        sum += grade;
+                    }
+
+                    double average = sum / count;
+                    Console.WriteLine($"Średnia: {average:F2}");
+
+                    if (average >= 3.0)
+                        Console.WriteLine("Uczeń zdał.");
+                    else
+                        Console.WriteLine("Uczeń nie zdał.");
+                    break;
+
+                default:
+                    Console.WriteLine("Nieprawidłowy wybór zadania.");
+                    break;
             }
         }
     }
