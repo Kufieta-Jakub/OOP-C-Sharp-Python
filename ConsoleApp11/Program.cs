@@ -44,6 +44,30 @@ namespace ConsoleApp11
                 }
             }
             Console.WriteLine("Wynik to: " + result.ToString());
+
+            // Zadanie 2: Konwerter temperatur
+
+            Console.Write("Wybierz kierunek konwersji (C lub F): ");
+            char choice = char.ToUpper(Console.ReadKey().KeyChar);
+            Console.WriteLine();
+
+            Console.Write("Podaj temperaturę: ");
+            double temp = double.Parse(Console.ReadLine());
+
+            if (choice == 'C')
+            {
+                double fahrenheit = temp * 1.8 + 32;
+                Console.WriteLine($"{temp}°C = {fahrenheit}°F");
+            }
+            else if (choice == 'F')
+            {
+                double celsius = (temp - 32) / 1.8;
+                Console.WriteLine($"{temp}°F = {celsius}°C");
+            }
+            else
+            {
+                Console.WriteLine("Nieprawidłowy wybór.");
+            }
         }
     }
 }
